@@ -19,12 +19,7 @@ class Customer extends Authenticatable
      */
     // lư dũ liệu vào database
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'phone',
-        'address',
-        'gender',
+        'name', 'email', 'phone', 'address', 'gender', 'role', 'email_verified_at'
     ];
 
     /**

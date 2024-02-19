@@ -88,7 +88,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="shop.html">
+                                                <a href="{{ route('home.product') }}">
                                                     <span class="menu-text">Shop</span>
                                                     <i class="fa fa-angle-down"></i>
                                                 </a>
@@ -197,12 +197,12 @@
                                             </li>
                                             @endif
                                             <li class="minicart-wrap">
-                                                <a href="#" class="minicart-btn toolbar-btn">
+                                                <a href="{{ route('cart.index') }}" class="minicart-btn toolbar-btn">
                                                     <i class="ion-bag"></i>
-                                                    <span class="cart-item_count">3</span>
+                                                    <!-- <span class="cart-item_count"></span> -->
                                                 </a>
-                                                <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
-                                                    <div class="single-cart-item">
+                                                <!-- <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2"> -->
+                                                <!-- <div class="single-cart-item">
                                                         <div class="cart-img">
                                                             <a href="cart.html"><img src="uploads/cart/1.jpg"
                                                                     alt="" /></a>
@@ -261,18 +261,19 @@
                                                                         class="ion-trash-b"></i></button>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="cart-price-total d-flex justify-content-between">
+                                                    </div> -->
+                                                <!-- <div class="cart-price-total d-flex justify-content-between">
                                                         <h5>Total :</h5>
                                                         <h5>$166.00</h5>
                                                     </div>
                                                     <div class="cart-links d-flex justify-content-center">
-                                                        <a class="obrien-button white-btn" href="cart.html">View
+                                                        <a class="obrien-button white-btn"
+                                                            href="{{ route('cart.index') }}">View
                                                             cart</a>
                                                         <a class="obrien-button white-btn"
                                                             href="checkout.html">Checkout</a>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </li>
                                             <li class="mobile-menu-btn d-lg-none">
                                                 <a class="off-canvas-btn" href="#">
@@ -528,7 +529,23 @@
         <!-- Sticky Header End Here -->
 
         @yield('main')
-
+        <div class="support-area">
+            <div class="container container-default custom-area">
+                <div class="row">
+                    <div class="col-lg-12 col-custom">
+                        <div class="support-wrapper d-flex">
+                            <div class="support-content">
+                                <h1 class="title">Need Help ?</h1>
+                                <p class="desc-content">Call our support 24/7 at 0365 298 174</p>
+                            </div>
+                            <div class="support-button d-flex align-items-center">
+                                <a class="obrien-button primary-btn" href="#">Contact now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Footer Area Start Here -->
         <footer class="footer-area">
             <div class="footer-widget-area">

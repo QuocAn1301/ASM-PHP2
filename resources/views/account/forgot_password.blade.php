@@ -1,5 +1,5 @@
 @extends('master.main')
-
+@section('title', 'Login')
 @section('main')
 <!-- Login Area Start Here -->
 <div class="login-register-area mt-no-text mb-no-text">

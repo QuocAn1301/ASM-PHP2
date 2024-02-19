@@ -31,14 +31,9 @@ class AccountController extends Controller
 
     //     if ($check) {
     //         if (auth('cus')->user()->email_verified_at == '') {
-    //             auth('cus')->logout();
-    //             return redirect()->back()->with('no', 'Tài khoảng của bạn chưa được xác minh, vui lòng kiểm tra email');
+    
 
-    //         }
-    //         return redirect()->route('home.index')->with('ok', 'Chào mừng trở lại');
-
-    //     }
-    // }
+   
     public function check_login(Request $req)
 {
     $req->validate([
@@ -60,8 +55,13 @@ class AccountController extends Controller
             auth('cus')->logout();
             return redirect()->back()->with('no', 'Tài khoảng của bạn chưa được xác minh, vui lòng kiểm tra email');
         }
-
-        return redirect()->route('home.index')->with('ok', 'Chào mừng trở lại');
+        if ($user->role == 0) {
+            // Nếu là admin (vai trò 0), chuyển hướng đến trang dashboard
+           return redirect()->route('categories.index')->with('ok', 'Chào mừng trở lại');
+        } else {
+            //Nếu là user (vai trò 1), chuyển hướng đến trang index
+            return redirect()->route('home.index')->with('ok', 'Chào mừng trở lại');
+        }
     } else {
         return redirect()->back()->withErrors(['loginError' => 'Tài khoản hoặc mật khẩu không đúng.']);
     }

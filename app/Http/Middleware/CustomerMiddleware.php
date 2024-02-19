@@ -18,6 +18,6 @@ class CustomerMiddleware
         if (auth('cus')->check()) {
             return $next($request);
         }
-        return redirect()->route('account.login');
+        return redirect()->route('account.login')->with('no', 'Bạn vui lòng đăng nhập trước để thực hiện các chức năng sau!');
     }
 }

@@ -44,7 +44,7 @@
                             <button class="btn obrien-button-2 primary-color" type="submit">Login</button>
                         </div>
                         <div class="single-input-item">
-                            <a href="register.html">Creat Account</a>
+                            <a href="{{ route('account.register') }}">Creat Account</a>
                         </div>
                     </form>
                 </div>
