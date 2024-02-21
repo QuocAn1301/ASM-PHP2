@@ -41,9 +41,6 @@
                             </select>
                         </div>
                         <div class="single-input-item mb-3">
-                            <input name="password" type="password" placeholder="Mật khẩu">
-                        </div>
-                        <div class="single-input-item mb-3">
                             <button class="btn obrien-button-2 primary-color" type="submit">Register</button>
                         </div>
                     </form>

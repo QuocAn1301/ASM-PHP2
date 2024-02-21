@@ -8,6 +8,9 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\OrderController;
+
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/product', [HomeController::class, 'product'])->name('home.product');
-
+Route::get('/search', [HomeController::class, 'search'])->name('home.search');
 Route::group(['middleware' => 'admin'], function () {
     
     
@@ -31,11 +34,19 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('admin/products', ProductsController::class);
     Route::resource('admin/categories', CategoryController::class);
     Route::resource('admin/customers', CustomerController::class);
+
+    Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/admin/order/detail/{order}', [OrderController::class, 'show'])->name('order.admin.show');
+    Route::get('/admin/update/detail/{order}', [OrderController::class, 'update'])->name('order.admin.update');
+
+
+    
     
     
 });
 
 Route::get('/products/{product}', [ProductsController::class, 'show'])->name('products.show');
+
 
 
 
@@ -76,4 +87,16 @@ Route::group(['prefix' => 'cart','middleware' => 'customer'], function () {
 
     Route::get('/clear', [CartController::class, 'clear'])->name('cart.clear');
     
+});
+
+Route::group(['prefix' => 'order','middleware' => 'customer'], function () {
+    Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('order.checkout');
+    Route::post('/checkout', [CheckoutController::class, 'post_checkout']);
+
+    Route::get('/history', [CheckoutController::class, 'history'])->name('order.history');
+    Route::get('/detail/{order}', [CheckoutController::class, 'detail'])->name('order.detail');
+    
+    Route::post('/cancel/{order}', [CheckoutController::class, 'cancel'])->name('order.cancel');
+    Route::post('/reorder/{order}', [CheckoutController::class, 'reorder'])->name('order.reorder');
+
 });

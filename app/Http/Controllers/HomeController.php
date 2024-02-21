@@ -18,4 +18,14 @@ class HomeController extends Controller
         $products = Product::with('images')->get();
         return view('home.product',compact('products'));
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        // Tìm kiếm sản phẩm dựa trên tên hoặc mô tả
+        $products = Product::where('name', 'like', "%$query%")
+                            ->get();
+    
+        return view('home.search', compact('products'));
+    }
 }

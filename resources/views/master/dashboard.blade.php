@@ -220,6 +220,41 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                    Đơn hàng
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{ route('order.index') }}?status=0" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Đang duyệt </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('order.index') }}?status=1" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Đang giao hàng </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('order.index') }}?status=2" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Đã hủy</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('order.index') }}?status=3" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Đã thanh toán </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

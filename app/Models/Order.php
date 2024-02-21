@@ -4,14 +4,13 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Authenticatable
+class Order extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
+    use  HasFactory;
+    
+    protected $appends = ['totalPrice'];
     /**
      * The attributes that are mass assignable.
      *
@@ -19,17 +18,21 @@ class Customer extends Authenticatable
      */
     // lư dũ liệu vào database
     protected $fillable = [
-        'name', 'email', 'phone', 'address', 'gender', 'role', 'email_verified_at'
+        'name', 'phone', 'address', 'customer_id','status'
     ];
- 
-    public function carts(){
-        return $this-> hasMany(Cart::class,'customer_id','id');
+
+    public function details(){
+        return $this-> hasMany(OrderDetail::class,'order_id','id');
     }
 
-    public function orders(){
-        return $this-> hasMany(order::class,'customer_id','id')->orderBy('id','DESC');
-    }
+    public function getTotalPriceAttribute(){
+        $t=0;
+        foreach($this->details as $item){
+            $t += $item-> price * $item-> quantity;
+        }
 
+        return $t;
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

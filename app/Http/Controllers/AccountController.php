@@ -137,14 +137,7 @@ class AccountController extends Controller
         $auth = auth('cus')-> user();
         $req->validate([
     'email' => 'email|unique:customers,email,' . $auth->id,
-    'password' => [
-        'required',
-        function ($attribute, $value, $fail) use ($auth) {
-            if (!Hash::check($value, $auth->password)) {
-                return $fail('Sai mật khẩu.');
-            }
-        },
-    ],
+    
     'name' => 'string|max:255',
     'phone' => 'max:10',
     'address' => 'max:255',

@@ -70,6 +70,9 @@
                                 onclick="confirmDeletee('{{ route('cart.clear') }}')">Xóa hết sản phẩm</a>
                         </div>
                         <div class="cart-update mt-sm-16">
+                            <a href="{{route('order.checkout')}}" class="btn obrien-button primary-btn">Thanh toán</a>
+                        </div>
+                        <div class="cart-update mt-sm-16">
                             <a href="#" class="btn obrien-button primary-btn">Tiếp tục mua sắm</a>
                         </div>
 
