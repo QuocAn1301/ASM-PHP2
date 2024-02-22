@@ -50,12 +50,13 @@ class ProductsController extends Controller
     }
 
     public function show($id)
-{
-    $products = Product::with('images')->get();
-    $product = Product::findOrFail($id);
+    {
+        $product = Product::findOrFail($id);
+        $relatedProducts = $product->category->products()->where('id', '!=', $product->id)->take(4)->get();
     
-    return view('home.show', compact('products', 'product'));
-}
+        return view('home.show', compact('product', 'relatedProducts'));
+    }
+    
 
 
 

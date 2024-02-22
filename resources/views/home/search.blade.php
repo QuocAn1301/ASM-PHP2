@@ -64,8 +64,12 @@
                             @foreach($products as $product)
                             <div class="col-md-3">
                                 <div class="card">
-                                    <img src="{{ $product->image_url }}" class="card-img-top"
-                                        alt="{{ $product->name }}">
+                                    <div class="product-image">
+                                        <a class="d-block" href="{{ route('products.show', $product->id) }}">
+                                            <img src="{{ asset('storage/' . $product->images[0]->image) }}"
+                                                style="width: 345px; height: 400px; object-fit: cover" />
+                                        </a>
+                                    </div>
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $product->name }}</h5>
                                         <p class="card-text">{{ $product->description }}</p>
@@ -85,20 +89,55 @@
                         <div class="col-sm-12 col-custom">
                             <div class="toolbar-bottom mt-30">
                                 <nav class="pagination pagination-wrap mb-10 mb-sm-0">
-                                    <ul class="pagination">
-                                        <li class="disabled prev">
-                                            <i class="ion-ios-arrow-thin-left"></i>
-                                        </li>
-                                        <li class="active"><a>1</a></li>
-                                        <li>
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li class="next">
-                                            <a href="#" title="Next >>"><i class="ion-ios-arrow-thin-right"></i></a>
-                                        </li>
-                                    </ul>
+                                    <div class="pagination-wrap mb-10 mb-sm-0">
+                                        @if ($products->lastPage() > 1)
+                                        <ul class="pagination">
+                                            {{-- Nút trở lại --}}
+                                            @if ($products->onFirstPage())
+                                            <li class="disabled prev">
+                                                <i class="ion-ios-arrow-thin-left"></i>
+                                            </li>
+                                            @else
+                                            <li>
+                                                <a href="{{ $products->previousPageUrl() }}" title="Trở lại"><i
+                                                        class="ion-ios-arrow-thin-left"></i></a>
+                                            </li>
+                                            @endif
+
+                                            {{-- Các số trang --}}
+                                            @php
+                                            $currentPage = $products->currentPage();
+                                            $lastPage = $products->lastPage();
+                                            $start = max($currentPage - 3, 1);
+                                            $end = min($currentPage + 3, $lastPage);
+                                            @endphp
+
+                                            @for ($i = $start; $i <= $end; $i++) <li
+                                                class="{{ $i == $currentPage ? 'active' : '' }}">
+                                                <a href="{{ $products->url($i) }}">{{ $i }}</a>
+                                                </li>
+                                                @endfor
+
+                                                {{-- Nút tiếp theo --}}
+                                                @if ($products->hasMorePages())
+                                                <li>
+                                                    <a href="{{ $products->nextPageUrl() }}" title="Tiếp theo"><i
+                                                            class="ion-ios-arrow-thin-right"></i></a>
+                                                </li>
+                                                @else
+                                                <li class="disabled next">
+                                                    <i class="ion-ios-arrow-thin-right"></i>
+                                                </li>
+                                                @endif
+                                        </ul>
+                                        @endif
+                                    </div>
+
+
                                 </nav>
-                                <p class="desc-content text-center text-sm-right">Showing 1 - 12 of 34 result</p>
+                                <p class="desc-content text-center text-sm-right">Hiển thị {{ $products->firstItem() }}
+                                    - {{ $products->lastItem() }} trên tổng số {{ $products->total() }} kết quả</p>
+                                <!-- Thêm hiển thị số kết quả -->
                             </div>
                         </div>
                     </div>

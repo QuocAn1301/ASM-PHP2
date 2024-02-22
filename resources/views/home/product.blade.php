@@ -11,7 +11,7 @@
                     <div class="breadcrumb-content position-relative section-content">
                         <h3 class="title-3">Shop Sidebar</h3>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+
                             <li>Shop</li>
                         </ul>
                     </div>
@@ -37,13 +37,11 @@
                         <div class="shop-select">
                             <form class="d-flex flex-column w-100" action="#">
                                 <div class="form-group">
-                                    <select class="form-control nice-select w-100">
-                                        <option selected value="1">Alphabetically, A-Z</option>
-                                        <option value="2">Sort by popularity</option>
-                                        <option value="3">Sort by newness</option>
-                                        <option value="4">Sort by price: low to high</option>
-                                        <option value="5">Sort by price: high to low</option>
-                                        <option value="6">Product Name: Z</option>
+                                    <select id="sort-products" class="form-control">
+                                        <option value="price_low_to_high">Price: Low to High</option>
+                                        <option value="price_high_to_low">Price: High to Low</option>
+                                        <option value="name_az">Name: A-Z</option>
+                                        <option value="name_za">Name: Z-A</option>
                                     </select>
                                 </div>
                             </form>
@@ -79,20 +77,6 @@
                                         <span class="old-price"><del>{{ $product->price }}</del></span>
                                     </div>
                                 </div>
-                                <div class="add-action d-flex position-absolute">
-                                    <a href="cart.html" title="Add To cart">
-                                        <i class="ion-bag"></i>
-                                    </a>
-                                    <a href="compare.html" title="Compare">
-                                        <i class="ion-ios-loop-strong"></i>
-                                    </a>
-                                    <a href="wishlist.html" title="Add To Wishlist">
-                                        <i class="ion-ios-heart-outline"></i>
-                                    </a>
-                                    <a href="#exampleModalCenter" data-bs-toggle="modal" title="Quick View">
-                                        <i class="ion-eye"></i>
-                                    </a>
-                                </div>
                                 <div class="product-content-listview">
                                     <div class="product-rating">
                                         <i class="fa fa-star"></i>
@@ -102,31 +86,17 @@
                                         <i class="fa fa-star-o"></i>
                                     </div>
                                     <div class="product-title">
-                                        <h4 class="title-2"> <a href="product-details.html">Product dummy name</a></h4>
+                                        <h4 class="title-2"> <a
+                                                href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
+                                        </h4> <!-- Sửa link -->
                                     </div>
                                     <div class="price-box">
-                                        <span class="regular-price ">$80.00</span>
-                                        <span class="old-price"><del>$90.00</del></span>
+                                        <span class="regular-price ">{{ $product->sale_price }}</span>
+                                        <span class="old-price"><del>{{ $product->price }}</del></span>
                                     </div>
-                                    <div class="add-action-listview d-flex">
-                                        <a href="cart.html" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                        <a href="compare.html" title="Compare">
-                                            <i class="ion-ios-loop-strong"></i>
-                                        </a>
-                                        <a href="wishlist.html" title="Add To Wishlist">
-                                            <i class="ion-ios-heart-outline"></i>
-                                        </a>
-                                        <a href="#exampleModalCenter" data-bs-toggle="modal" title="Quick View">
-                                            <i class="ion-eye"></i>
-                                        </a>
-                                    </div>
+
                                     <p class="desc-content">
-                                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
-                                        in a piece of classical Latin literature from 45 BC, making it over 2000 years
-                                        old. Richard McClintock, a Latin professor at Hampden-Sydney College in
-                                        Virginia,
+                                        {{ $product->description }}
                                     </p>
                                 </div>
                             </div>
@@ -139,23 +109,59 @@
                         <div class="col-sm-12 col-custom">
                             <div class="toolbar-bottom mt-30">
                                 <nav class="pagination pagination-wrap mb-10 mb-sm-0">
-                                    <ul class="pagination">
-                                        <li class="disabled prev">
-                                            <i class="ion-ios-arrow-thin-left"></i>
-                                        </li>
-                                        <li class="active"><a>1</a></li>
-                                        <li>
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li class="next">
-                                            <a href="#" title="Next >>"><i class="ion-ios-arrow-thin-right"></i></a>
-                                        </li>
-                                    </ul>
+                                    <div class="pagination-wrap mb-10 mb-sm-0">
+                                        @if ($products->lastPage() > 1)
+                                        <ul class="pagination">
+                                            {{-- Nút trở lại --}}
+                                            @if ($products->onFirstPage())
+                                            <li class="disabled prev">
+                                                <i class="ion-ios-arrow-thin-left"></i>
+                                            </li>
+                                            @else
+                                            <li>
+                                                <a href="{{ $products->previousPageUrl() }}" title="Trở lại"><i
+                                                        class="ion-ios-arrow-thin-left"></i></a>
+                                            </li>
+                                            @endif
+
+                                            {{-- Các số trang --}}
+                                            @php
+                                            $currentPage = $products->currentPage();
+                                            $lastPage = $products->lastPage();
+                                            $start = max($currentPage - 3, 1);
+                                            $end = min($currentPage + 3, $lastPage);
+                                            @endphp
+
+                                            @for ($i = $start; $i <= $end; $i++) <li
+                                                class="{{ $i == $currentPage ? 'active' : '' }}">
+                                                <a href="{{ $products->url($i) }}">{{ $i }}</a>
+                                                </li>
+                                                @endfor
+
+                                                {{-- Nút tiếp theo --}}
+                                                @if ($products->hasMorePages())
+                                                <li>
+                                                    <a href="{{ $products->nextPageUrl() }}" title="Tiếp theo"><i
+                                                            class="ion-ios-arrow-thin-right"></i></a>
+                                                </li>
+                                                @else
+                                                <li class="disabled next">
+                                                    <i class="ion-ios-arrow-thin-right"></i>
+                                                </li>
+                                                @endif
+                                        </ul>
+                                        @endif
+                                    </div>
+
+
                                 </nav>
-                                <p class="desc-content text-center text-sm-right">Showing 1 - 12 of 34 result</p>
+                                <p class="desc-content text-center text-sm-right">Hiển thị {{ $products->firstItem() }}
+                                    - {{ $products->lastItem() }} trên tổng số {{ $products->total() }} kết quả</p>
+                                <!-- Thêm hiển thị số kết quả -->
                             </div>
                         </div>
                     </div>
+
                     <!-- Bottom Toolbar End -->
                 </div>
                 <div class="col-lg-3 col-12 col-custom">
@@ -181,37 +187,7 @@
                                 <!-- Widget Menu Start -->
                                 <nav>
                                     <ul class="mobile-menu p-0 m-0">
-                                        <li class="menu-item-has-children"><a href="#">Breads</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Skateboard (02)</a></li>
-                                                <li><a href="#">Surfboard (4)</a></li>
-                                                <li><a href="#">Accessories (3)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children"><a href="#">Fruits</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Samsome</a></li>
-                                                <li><a href="#">GL Stylus (4)</a></li>
-                                                <li><a href="#">Uawei (3)</a></li>
-                                                <li><a href="#">Avocado (3)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children"><a href="#">Vagetables</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Power Bank</a></li>
-                                                <li><a href="#">Data Cable (4)</a></li>
-                                                <li><a href="#">Avocado (3)</a></li>
-                                                <li><a href="#">Brocoly (3)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children"><a href="#">Organic Food</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Vagetables</a></li>
-                                                <li><a href="#">Green Food (4)</a></li>
-                                                <li><a href="#">Coconut (3)</a></li>
-                                                <li><a href="#">Cabage (3)</a></li>
-                                            </ul>
-                                        </li>
+                                        <!-- Thêm menu categories nếu cần -->
                                     </ul>
                                 </nav>
                                 <!-- Widget Menu End -->
@@ -227,8 +203,6 @@
                                     </ul>
                                 </div>
                             </div>
-
-
                         </div>
                     </aside>
                     <!-- Sidebar Widget End -->
@@ -236,11 +210,33 @@
             </div>
         </div>
     </div>
-    <!-- Shop Main Area End Here -->
-    <!-- Support Area Start Here -->
-    <!-- Support Area End Here -->
-
-    <!-- Footer Area End Here -->
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var selectElement = document.getElementById('sort-products');
+
+    selectElement.addEventListener('change', function() {
+        var selectedOption = this.value;
+        // Gửi yêu cầu lọc sản phẩm dựa trên lựa chọn của người dùng
+        filterProducts(selectedOption);
+    });
+
+    function filterProducts(selectedOption) {
+        // Sử dụng Ajax để gửi yêu cầu lọc đến máy chủ Laravel
+        // Đảm bảo rằng bạn đã định nghĩa route và phương thức controller để xử lý yêu cầu này
+        $.ajax({
+            url: '/filter-products/' + selectedOption,
+            type: 'GET',
+            success: function(response) {
+                // Cập nhật giao diện người dùng với sản phẩm đã lọc
+                $('#products-container').html(response);
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+});
+</script>
 
 @stop

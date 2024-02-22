@@ -137,21 +137,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="add-action d-flex position-absolute">
-                                <a href="cart.html" title="Add To cart">
-                                    <i class="ion-bag"></i>
-                                </a>
-                                <a href="compare.html" title="Compare">
-                                    <i class="ion-ios-loop-strong"></i>
-                                </a>
-                                <a href="wishlist.html" title="Add To Wishlist">
-                                    <i class="ion-ios-heart-outline"></i>
-                                </a>
-                                <a href="#exampleModalCenter" data-bs-toggle="modal" title="Quick View">
-                                    <i class="ion-eye"></i>
-                                </a>
-                            </div> -->
                     @endforeach
                 </div>
             </div>

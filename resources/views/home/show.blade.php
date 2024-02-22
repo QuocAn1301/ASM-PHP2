@@ -347,10 +347,7 @@
                 <div class="row">
                     <div class="col-lg-5 m-auto text-center col-custom">
                         <div class="section-content">
-                            <h2 class="title-1 text-uppercase">You May Also Like</h2>
-                            <div class="desc-content">
-                                <p>Most of the customers choose our products. You may also like our product.</p>
-                            </div>
+                            <h2 class="title-1 text-uppercase">Sản phẩm liên quan</h2>
                         </div>
                     </div>
                 </div>
@@ -373,246 +370,41 @@
                         "slidesToShow": 1
                         }}
                         ]'>
+
+                            @foreach($relatedProducts as $relatedProduct)
                             <div class="single-item">
                                 <div class="single-product position-relative">
                                     <div class="product-image">
-                                        <a class="d-block" href="product-details.html">
-                                            <img src="assets/images/product/1.jpg" alt="" class="product-image-1 w-100">
-                                            <img src="assets/images/product/2.jpg" alt=""
-                                                class="product-image-2 position-absolute w-100">
+                                        <a class="d-block" href="{{ route('products.show', $relatedProduct->id) }}">
+                                            <img src="{{ asset('storage/' . $relatedProduct->images[0]->image) }}"
+                                                style="width: 345px; height: 400px; object-fit: cover" />
                                         </a>
                                     </div>
                                     <div class="product-content">
                                         <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
+                                            <!-- Bổ sung phần xếp hạng sản phẩm nếu có -->
                                         </div>
                                         <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.html">Product dummy name</a>
+                                            <h4 class="title-2">
+                                                <a
+                                                    href="{{ route('products.show', $relatedProduct->id) }}">{{ $relatedProduct->name }}</a>
                                             </h4>
                                         </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                            <span class="old-price"><del>$90.00</del></span>
+                                        <div>
+                                            <span class="regular-price "><b>{{ $relatedProduct->sale_price }}</b></span>
+                                            <span class="old-price"><del>{{ $relatedProduct->price }}</del></span>
                                         </div>
-                                    </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.html" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                        <a href="compare.html" title="Compare">
-                                            <i class="ion-ios-loop-strong"></i>
-                                        </a>
-                                        <a href="wishlist.html" title="Add To Wishlist">
-                                            <i class="ion-ios-heart-outline"></i>
-                                        </a>
-                                        <a href="#exampleModalCenter" data-bs-toggle="modal" title="Quick View">
-                                            <i class="ion-eye"></i>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-item">
-                                <div class="single-product position-relative">
-                                    <div class="product-image">
-                                        <a class="d-block" href="product-details.html">
-                                            <img src="assets/images/product/3.jpg" alt="" class="product-image-1 w-100">
-                                            <img src="assets/images/product/4.jpg" alt=""
-                                                class="product-image-2 position-absolute w-100">
-                                        </a>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.html">Product dummy title</a>
-                                            </h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                            <span class="old-price"><del>$90.00</del></span>
-                                        </div>
-                                    </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.html" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                        <a href="compare.html" title="Compare">
-                                            <i class="ion-ios-loop-strong"></i>
-                                        </a>
-                                        <a href="wishlist.html" title="Add To Wishlist">
-                                            <i class="ion-ios-heart-outline"></i>
-                                        </a>
-                                        <a href="#exampleModalCenter" data-bs-toggle="modal" title="Quick View">
-                                            <i class="ion-eye"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-item">
-                                <div class="single-product position-relative">
-                                    <div class="product-image">
-                                        <a class="d-block" href="product-details.html">
-                                            <img src="assets/images/product/5.jpg" alt="" class="product-image-1 w-100">
-                                            <img src="assets/images/product/6.jpg" alt=""
-                                                class="product-image-2 position-absolute w-100">
-                                        </a>
-                                    </div>
-                                    <div class="label-product">
-                                        <span
-                                            class="label-sale position-absolute text-uppercase text-white text-center d-block">Soldout</span>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.html">Product dummy title</a>
-                                            </h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                            <span class="old-price"><del>$90.00</del></span>
-                                        </div>
-                                    </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.html" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                        <a href="compare.html" title="Compare">
-                                            <i class="ion-ios-loop-strong"></i>
-                                        </a>
-                                        <a href="wishlist.html" title="Add To Wishlist">
-                                            <i class="ion-ios-heart-outline"></i>
-                                        </a>
-                                        <a href="#exampleModalCenter" data-bs-toggle="modal" title="Quick View">
-                                            <i class="ion-eye"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-item">
-                                <div class="single-product position-relative">
-                                    <div class="product-image">
-                                        <a class="d-block" href="product-details.html">
-                                            <img src="assets/images/product/7.jpg" alt="" class="product-image-1 w-100">
-                                            <img src="assets/images/product/8.jpg" alt=""
-                                                class="product-image-2 position-absolute w-100">
-                                        </a>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.html">Product dummy name</a>
-                                            </h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                            <span class="old-price"><del>$90.00</del></span>
-                                        </div>
-                                    </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.html" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                        <a href="compare.html" title="Compare">
-                                            <i class="ion-ios-loop-strong"></i>
-                                        </a>
-                                        <a href="wishlist.html" title="Add To Wishlist">
-                                            <i class="ion-ios-heart-outline"></i>
-                                        </a>
-                                        <a href="#exampleModalCenter" data-bs-toggle="modal" title="Quick View">
-                                            <i class="ion-eye"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-item">
-                                <div class="single-product position-relative">
-                                    <div class="product-image">
-                                        <a class="d-block" href="product-details.html">
-                                            <img src="assets/images/product/9.jpg" alt="" class="product-image-1">
-                                            <img src="assets/images/product/10.jpg" alt=""
-                                                class="product-image-2 position-absolute top-0 left-0">
-                                        </a>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-title">
-                                            <h4 class="title-2"> <a href="product-details.html">Product dummy title</a>
-                                            </h4>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price ">$80.00</span>
-                                            <span class="old-price"><del>$90.00</del></span>
-                                        </div>
-                                    </div>
-                                    <div class="add-action d-flex position-absolute">
-                                        <a href="cart.html" title="Add To cart">
-                                            <i class="ion-bag"></i>
-                                        </a>
-                                        <a href="compare.html" title="Compare">
-                                            <i class="ion-ios-loop-strong"></i>
-                                        </a>
-                                        <a href="wishlist.html" title="Add To Wishlist">
-                                            <i class="ion-ios-heart-outline"></i>
-                                        </a>
-                                        <a href="#exampleModalCenter" data-bs-toggle="modal" title="Quick View">
-                                            <i class="ion-eye"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Product Area End Here -->
-        <!-- Support Area Start Here -->
-        <div class="support-area">
-            <div class="container container-default custom-area">
-                <div class="row">
-                    <div class="col-lg-12 col-custom">
-                        <div class="support-wrapper d-flex">
-                            <div class="support-content">
-                                <h1 class="title">Need Help ?</h1>
-                                <p class="desc-content">Call our support 24/7 at 01234-567-890</p>
-                            </div>
-                            <div class="support-button d-flex align-items-center">
-                                <a class="obrien-button primary-btn" href="contact-us.html">Contact now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Support Area End Here -->
-        <!-- Thêm jQuery trước khi thêm script xử lý số lượng -->
+
 
 
         <script>

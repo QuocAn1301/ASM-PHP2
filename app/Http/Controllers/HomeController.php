@@ -14,17 +14,18 @@ class HomeController extends Controller
         return view('home.index',compact('products'));
     }
     public function product()
-    {
-        $products = Product::with('images')->get();
-        return view('home.product',compact('products'));
-    }
+{
+    $products = Product::with('images')->paginate(1); // Số lượng sản phẩm trên mỗi trang (ở đây là 12)
+    return view('home.product', compact('products'));
+}
+
     public function search(Request $request)
     {
         $query = $request->input('query');
     
         // Tìm kiếm sản phẩm dựa trên tên hoặc mô tả
         $products = Product::where('name', 'like', "%$query%")
-                            ->get();
+                            ->paginate(1);
     
         return view('home.search', compact('products'));
     }
