@@ -34,18 +34,24 @@
                             <button data-role="grid_list" type="button" class="btn-list" data-bs-toggle="tooltip"
                                 title="List"><i class="fa fa-th-list"></i></button>
                         </div>
-                        <div class="shop-select">
-                            <form class="d-flex flex-column w-100" action="#">
-                                <div class="form-group">
-                                    <select id="sort-products" class="form-control">
-                                        <option value="price_low_to_high">Price: Low to High</option>
-                                        <option value="price_high_to_low">Price: High to Low</option>
-                                        <option value="name_az">Name: A-Z</option>
-                                        <option value="name_za">Name: Z-A</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
+                        <form action="{{ route('home.loc') }}" method="GET">
+                            <!-- Các lựa chọn bộ lọc -->
+                            <select name="sort_by_price">
+                                <option value="asc">Giá từ thấp đến cao</option>
+                                <option value="desc">Giá từ cao đến thấp</option>
+                            </select>
+                            <select name="sort_by_name">
+                                <option value="asc">Tên sản phẩm A-Z</option>
+                                <option value="desc">Tên sản phẩm Z-A</option>
+                            </select>
+                            <button type="submit">Lọc</button>
+
+                            <!-- Bảo toàn các tham số của trang hiện tại -->
+                            @foreach(request()->except(['sort_by_price', 'sort_by_name']) as $key => $value)
+                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                            @endforeach
+                        </form>
+
                     </div>
                     <!--shop toolbar end-->
                     <!-- Shop Wrapper Start -->
@@ -105,6 +111,7 @@
                     </div>
                     <!-- Shop Wrapper End -->
                     <!-- Bottom Toolbar Start -->
+                    @if ($products instanceof \Illuminate\Contracts\Pagination\Paginator)
                     <div class="row">
                         <div class="col-sm-12 col-custom">
                             <div class="toolbar-bottom mt-30">
@@ -152,15 +159,15 @@
                                         </ul>
                                         @endif
                                     </div>
-
-
                                 </nav>
                                 <p class="desc-content text-center text-sm-right">Hiển thị {{ $products->firstItem() }}
-                                    - {{ $products->lastItem() }} trên tổng số {{ $products->total() }} kết quả</p>
+                                    - {{
+                $products->lastItem() }} trên tổng số {{ $products->total() }} kết quả</p>
                                 <!-- Thêm hiển thị số kết quả -->
                             </div>
                         </div>
                     </div>
+                    @endif
 
                     <!-- Bottom Toolbar End -->
                 </div>

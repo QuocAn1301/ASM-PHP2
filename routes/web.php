@@ -27,6 +27,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/product', [HomeController::class, 'product'])->name('home.product');
 Route::get('/search', [HomeController::class, 'search'])->name('home.search');
+Route::get('/loc', [HomeController::class, 'loc'])->name('home.loc');
+
+
+
 Route::group(['middleware' => 'admin'], function () {
     
     

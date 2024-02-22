@@ -14,13 +14,14 @@
                     <input name="name" type="text" placeholder="Tên của bạn" required class="form-control">
                     <label for="sale_price">Email:</label>
                     <input name="email" type="email" placeholder="Email của bạn" required class="form-control">
-                    <label for="price">Mật khẩu :</label>
+                    <label for="password">Mật khẩu :</label>
                     <input name="password" type="password" placeholder="Mật khẩu của bạn" class="form-control">
-                    <label for="sale_price">Nhập lại mật khẩu:</label>
+                    <label for="confirm_password">Nhập lại mật khẩu:</label>
                     <input name="confirm_password" type="password" placeholder="Nhập lại mật khẩu" class="form-control">
+
                 </div>
             </div>
-            <button type="submit" style="background-color:#008B8B;color:#fff; height:36px">Thêm Sản Phẩm</button>
+            <button type="submit" style="background-color:#008B8B;color:#fff; height:36px">Thêm người dùng</button>
             <a href="{{ route('customers.index') }}" class="btn btn-primary"
                 style="background-color: #DC143C; color: #fff;">Trở lại</a>
         </div>

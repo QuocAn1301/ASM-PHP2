@@ -15,7 +15,7 @@ class HomeController extends Controller
     }
     public function product()
 {
-    $products = Product::with('images')->paginate(1); // Số lượng sản phẩm trên mỗi trang (ở đây là 12)
+    $products = Product::with('images')->paginate(2); // Số lượng sản phẩm trên mỗi trang (ở đây là 12)
     return view('home.product', compact('products'));
 }
 
@@ -29,4 +29,21 @@ class HomeController extends Controller
     
         return view('home.search', compact('products'));
     }
+
+public function loc(Request $request)
+{
+
+    $productsQuery = Product::query();
+    if ($request->has('sort_by_price')) {
+        $productsQuery->orderBy('sale_price', $request->sort_by_price);
+    }
+    if ($request->has('sort_by_name')) {
+        $productsQuery->orderBy('name', $request->sort_by_name);
+    }
+    $products = $productsQuery->paginate(2);
+
+    // Trả về view kèm theo thông tin phân trang và kết quả lọc
+    return view('home.product', compact('products'));
+}
+
 }
