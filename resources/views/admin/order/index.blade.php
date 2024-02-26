@@ -62,7 +62,7 @@
                 <td class="pro-price">
                     @if ($item->pay == 0)
                     <span>Chưa thanh toán</span>
-                    @elseif ($item->status == 1)
+                    @elseif ($item->pay == 1)
                     <span>Đã thanh toán </span>
                     @endif
                 </td>

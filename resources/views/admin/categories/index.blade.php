@@ -4,7 +4,7 @@
 
 <div class="card" style="width: 600px;">
     <div class="card-header">
-        <h3 class="card-title">Projects</h3>
+        <h3 class="card-title">Danh mục</h3>
 
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -17,14 +17,14 @@
     </div>
     <a class="btn btn-primary btn-sm" href="{{ route('categories.create') }}">
         <i class="fas fa-folder"></i>
-        Create
+        Tạo danh mục
     </a>
     <div class="card-body p-0" style="display: block;">
         <table class="table table-striped projects">
             <thead>
                 <tr>
                     <th style="width: 1%">No</th>
-                    <th style="width: 50%">Category Name</th>
+                    <th style="width: 50%">Tên danh mục</th>
                 </tr>
             </thead>
             <tbody>

@@ -18,7 +18,7 @@ class Order extends Model
      */
     // lư dũ liệu vào database
     protected $fillable = [
-        'name', 'phone', 'address', 'customer_id','status'
+        'name', 'phone', 'address', 'customer_id','status','pay'
     ];
 
     public function details(){

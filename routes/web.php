@@ -42,6 +42,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
     Route::get('/admin/order/detail/{order}', [OrderController::class, 'show'])->name('order.admin.show');
     Route::get('/admin/update/detail/{order}', [OrderController::class, 'update'])->name('order.admin.update');
+    Route::get('/admin/updatep/detail/{order}', [OrderController::class, 'updatep'])->name('order.admin.updatep');
+    
 
 
     
@@ -50,6 +52,7 @@ Route::group(['middleware' => 'admin'], function () {
 });
 
 Route::get('/products/{product}', [ProductsController::class, 'show'])->name('products.show');
+Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 
 
 
@@ -102,6 +105,6 @@ Route::group(['prefix' => 'order','middleware' => 'customer'], function () {
     Route::get('/detail/{order}', [CheckoutController::class, 'detail'])->name('order.detail');
     
     Route::post('/cancel/{order}', [CheckoutController::class, 'cancel'])->name('order.cancel');
-    Route::post('/reorder/{order}', [CheckoutController::class, 'reorder'])->name('order.reorder');
+    Route::get('/reorder/{order_id}', [CheckoutController::class, 'reorder'])->name('order.reorder');
 
 });

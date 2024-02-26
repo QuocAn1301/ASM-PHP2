@@ -6,7 +6,7 @@
 <div class="col-md-6">
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">General</h3>
+            <h3 class="card-title">Tạo danh mục</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -17,10 +17,10 @@
         <div class="card-body">
             <form action="{{ route('categories.store') }}" method="post">
                 @csrf
-                <label for="name">Category Name:</label>
+                <label for="name">Tên danh mục:</label>
                 <input type="text" name="name" id="name" required>
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-plus-circle"></i> Create
+                    <i class="fas fa-plus-circle"></i> Tạo
                 </button>
             </form>
 

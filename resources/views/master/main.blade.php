@@ -254,11 +254,12 @@
                         <div class="col-lg-12 col-custom">
                             <div class="support-wrapper d-flex">
                                 <div class="support-content">
-                                    <h1 class="title">Need Help ?</h1>
-                                    <p class="desc-content">Call our support 24/7 at 0365 298 174</p>
+                                    <h1 class="title">Cần trợ giúp ?</h1>
+                                    <p class="desc-content">Gọi để hỗ trợ 24/7 0365 298 174</p>
                                 </div>
                                 <div class="support-button d-flex align-items-center">
-                                    <a class="obrien-button primary-btn" href="#">Contact now</a>
+                                    <a class="obrien-button primary-btn" href="https://www.facebook.com/VQA01">Kết nối
+                                        ngay</a>
                                 </div>
                             </div>
                         </div>
@@ -362,22 +363,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-copyright-area">
-                    <div class="container custom-area">
-                        <div class="row">
-                            <div class="col-12 text-center col-custom">
-                                <div class="copyright-content">
-                                    <p>
-                                        Copyright © 2020
-                                        <a href="https://hasthemes.com/" title="https://hasthemes.com/">HasThemes</a> |
-                                        Built with&nbsp;<strong>Obrien</strong>&nbsp;by
-                                        <a href="https://hasthemes.com/" title="https://hasthemes.com/">HasThemes</a>.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </footer>
     </div>
 

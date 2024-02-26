@@ -59,6 +59,8 @@
                 <a href="{{ route('order.admin.update', ['order' => $order->id]) }}?status=2"
                     class="btn obrien-button primary-btn"> Hủy đơn</a>
                 @else
+                <a href="{{ route('order.admin.updatep', ['order' => $order->id]) }}?status=2"
+                    class="btn obrien-button primary-btn"> Đã thanh toán</a>
                 <a href="{{ route('order.admin.update', ['order' => $order->id]) }}?status=1"
                     class="btn obrien-button primary-btn"> Giao hàng</a>
 

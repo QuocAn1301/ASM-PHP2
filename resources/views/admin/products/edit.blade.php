@@ -1,4 +1,4 @@
-<!-- Form thêm sản phẩm -->
+<!-- Form chỉnh sửa sản phẩm -->
 @extends('master.dashboard')
 @section('main')
 <form id="updateForm" action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
@@ -7,10 +7,10 @@
 
     <div class="card card-primary">
         <div class="card-header" style="background-color:#008B8B">
-            <h3 class="card-title">Product Edit</h3>
+            <h3 class="card-title">Sửa Sản Phẩm</h3>
 
             <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Thu gọn">
                     <i class="fas fa-minus"></i>
                 </button>
             </div>
@@ -58,27 +58,48 @@
                     </div>
                 </div>
                 <div class="form-group col-md-5">
-                    <i class="fa-regular fa-image" style="font-size:250px; color:#008B8B"></i><br>
-                    <input type="file" name="images[]" multiple required>
+                    <label for="images">Hình Ảnh:</label>
+                    <div class="image-preview" style="display: flex;">
+                        @foreach($product->images as $productImage)
+                        <div class="preview-item" style="margin-right: 10px;">
+                            <img src="{{ asset('storage/' . $productImage->image) }}"
+                                style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        @endforeach
+                    </div>
+                    </br>
+                    <input type="file" name="images[]" id="images" required multiple>
                 </div>
             </div>
-            <button type="button" name="submitBtn" class="btn btn-primary" onclick="confirmUpdate()"
-                style="background-color:#008B8B;color:#fff">Sửa Sản Phẩm</button>
-            <a href="{{ route('products.index') }}" class="btn btn-primary"
-                style="background-color: #DC143C; color: #fff;">Trở lại</a>
+            <button type="submit" class="btn btn-primary">Sửa Sản Phẩm</button>
+            <a href="{{ route('products.index') }}" class="btn btn-danger">Hủy</a>
         </div>
-        <!-- /.card-body -->
     </div>
 </form>
+
 <script>
-function confirmUpdate() {
-    var result = confirm("Bạn có muốn sửa sản phẩm này không?");
-    if (result) {
-        // Nếu người dùng chọn "Yes", submit form
-        document.getElementById("updateForm").submit();
-    } else {
-        // Nếu người dùng chọn "No", không làm gì cả
+document.getElementById('images').addEventListener('change', function(event) {
+    var fileList = event.target.files;
+    var previewContainer = document.querySelector('.image-preview');
+    previewContainer.innerHTML = '';
+    if (fileList) {
+        Array.from(fileList).forEach(function(file) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var previewItem = document.createElement('div');
+                previewItem.classList.add('preview-item');
+                previewItem.style.marginRight = '10px';
+                var img = document.createElement('img');
+                img.src = reader.result;
+                img.style.width = '100px';
+                img.style.height = '100px';
+                img.style.objectFit = 'cover';
+                previewItem.appendChild(img);
+                previewContainer.appendChild(previewItem);
+            }
+            reader.readAsDataURL(file);
+        });
     }
-}
+});
 </script>
 @stop

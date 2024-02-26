@@ -28,7 +28,7 @@
                                     <span>Đang duyệt </span>
                                     @elseif ($item->status == 1)
                                     <span>Đang giao hàng </span>
-                                    @elseif ($item->status == 2)
+                                    @elseif ($item->status == 3)
                                     <span>Đã hủy </span>
                                     @endif
                                 </td>
@@ -42,7 +42,7 @@
                                 <td class="pro-thumbnail">{{number_format($item->totalPrice) }}
                                     VND</td>
                                 <td>
-                                    @if($item->status==2)
+                                    @if($item->status==3)
                                     <div style="display: flex; align-items: center;">
                                         <a href="{{ route('order.detail', ['order' => $item->id]) }}"
                                             class="btn obrien-button primary-btn">Xem chi tiết</a>

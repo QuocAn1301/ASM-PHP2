@@ -25,21 +25,23 @@
             <thead>
                 <tr>
                     <th style="width: 5%">No</th>
-                    <th style="width: 20%">Title</th>
-                    <th style="width: 20%">Content</th>
-                    <th style="width: 20%">Image</th>
-                    <th style="width: 20%">Actions</th>
+                    <th style="width: 15%">Title</th>
+                    <th style="width: 10%">Image</th>
+                    <th style="width: 15%">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($News as $item)
+                @foreach($news as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->title }}</td>
-                    <td>{{ $item->content }}</td>
                     <td>
+                        @if($item->image)
                         <img src="{{ asset('storage/' . $item->image) }}"
                             style="width: 50px; height: 50px; object-fit: cover; margin-right: 5px;">
+                        @else
+                        No Image
+                        @endif
                     </td>
                     <td class="project-actions">
                         <a class="btn btn-info btn-sm" href="{{ route('news.edit', $item->id) }}">

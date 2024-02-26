@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\News;
 
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
-    {
-        $products = Product::with('images')->get();
-        $categoryOneProducts = Product::where('category_id',9)->get();
-        return view('home.index',compact('products', 'categoryOneProducts'));
-    }
+{
+    $products = Product::with('images')->get();
+    $categoryOneProducts = Product::where('category_id', 9)->get();
+    $news = News::all(); // Truy vấn tất cả tin tức
+    return view('home.index', compact('products', 'categoryOneProducts', 'news'));
+}
     public function product()
 {
     $products = Product::with('images')->get(); // Số lượng sản phẩm trên mỗi trang (ở đây là 12)

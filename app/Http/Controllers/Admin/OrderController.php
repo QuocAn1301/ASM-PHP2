@@ -25,5 +25,11 @@ class OrderController extends Controller
         $order->update(['status' => $status]);
         return redirect()->route('order.index')->with('ok','cập nhập đơn hàng thành công');
     }
+
+    public function updatep(Order $order){
+        $pay = request('pay',1);
+        $order->update(['pay' => $pay]);
+        return redirect()->route('order.index')->with('ok','cập nhập đơn hàng thành công');
+    }
  
 }
