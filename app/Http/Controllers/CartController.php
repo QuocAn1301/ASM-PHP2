@@ -14,35 +14,36 @@ class CartController extends Controller
         return view('home.cart',compact('carts'));
     }
 
-    public function add(Product $product , Request $reg )
+    public function add(Product $product , Request $request )
     {
-       $quantity = $reg->quantity ? floor($reg->quantity) :1 ;
-       $cus_id = auth('cus')->id();
-       $cartExist = Cart::where([
-        'customer_id'=>$cus_id,
-        'product_id'=>$product->id
-       ])->first();
+        $quantity = $request->input('quantity') ? floor($request->input('quantity')) : 1;
 
-       if($cartExist){
-        Cart::where([
-            'customer_id'=>$cus_id,
-            'product_id'=>$product->id
-           ])->increment('quantity',$quantity);
-       }else{
-        $data = [
-            'customer_id' => auth('cus')->id(),
-            'product_id' => $product->id,
-            'price' => $product->sale_price ? $product->sale_price : $product->price,
-            'quantity' => $quantity
-        ];
-        
-
-        if(Cart::create($data)){
-            return redirect()->route('cart.index')->with('ok', 'Thêm sản phẩm vào giỏ hàng thành công');
+        $cus_id = auth('cus')->id();
+        $cartExist = Cart::where([
+            'customer_id' => $cus_id,
+            'product_id' => $product->id
+        ])->first();
+    
+        if ($cartExist) {
+            Cart::where([
+                'customer_id' => $cus_id,
+                'product_id' => $product->id
+            ])->increment('quantity', $quantity);
+        } else {
+            $data = [
+                'customer_id' => auth('cus')->id(),
+                'product_id' => $product->id,
+                'price' => $product->sale_price ? $product->sale_price : $product->price,
+                'quantity' => $quantity
+            ];
+    
+            if (Cart::create($data)) {
+                return redirect()->route('cart.index')->with('ok', 'Thêm sản phẩm vào giỏ hàng thành công');
+            }
         }
-       }
-       return redirect()->route('cart.index')->with('ok', 'Thêm sản phẩm vào giỏ hàng thành công');
+        return redirect()->route('cart.index')->with('ok', 'Thêm sản phẩm vào giỏ hàng thành công');
     }
+    
 
     public function update(Product $product , Request $reg )
     {

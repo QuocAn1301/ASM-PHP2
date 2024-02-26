@@ -1,6 +1,17 @@
 @extends('master.main')
 
 @section('main')
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Thanh toán</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="checkout-area">
     <div class="container container-default-2 custom-container">
         <div class="row">
@@ -8,7 +19,7 @@
                 <form action="" method="post">
                     @csrf
                     <div class="checkbox-form">
-                        <h3>Billing Details</h3>
+                        <h3>Thông tin người nhận</h3>
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- <div class="country-select clearfix">
@@ -37,26 +48,26 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
-                                    <label>Name <span class="required">*</span></label>
+                                    <label>Tên người nhận <span class="required">*</span></label>
                                     <input value="{{$auth->name}}" name="name" type="text">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
-                                    <label>Address <span class="required">*</span></label>
+                                    <label>Địa chỉ <span class="required">*</span></label>
                                     <input value="{{$auth->address}}" name="address" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
-                                    <label>Phone <span class="required">*</span></label>
+                                    <label>Số điện thoại <span class="required">*</span></label>
                                     <input value="{{$auth->phone}}" name="phone" type="text">
                                 </div>
                             </div>
 
                         </div>
                         <div class="order-button-payment">
-                            <input value="Place order" type="submit">
+                            <input value="Đặt hàng" type="submit">
                         </div>
                     </div>
 
@@ -64,22 +75,22 @@
             </div>
             <div class="col-lg-6 col-12">
                 <div class="your-order">
-                    <h3>Your order</h3>
+                    <h3>Đơn hàng của bạn</h3>
                     <div class="your-order-table table-responsive">
                         <table class="table">
                             <thead>
 
                                 <tr>
-                                    <th class="cart-product-name">Product</th>
-                                    <th class="cart-product-total">Total</th>
+                                    <th class="cart-product-name">Sản phẩm</th>
+                                    <th class="cart-product-total">Tổng cộng </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($auth->carts as $item)
                                 <tr class="cart_item">
-                                    <td class="cart-product-name"> {{$item->prod->name}}<strong
-                                            class="product-quantity">
-                                            × {{$item->quantity}}</strong></td>
+                                    <td class="cart-product-name"> {{$item->prod->name}}
+
+                                        × {{$item->quantity}}</td>
                                     <td class="cart-product-total text-center"><span
                                             class="amount">{{$item->quantity * $item->price}} VND</span></td>
                                 </tr>
@@ -97,72 +108,14 @@
                                 @endforeach
 
                                 <tr class="order-total">
-                                    <th>Order Total</th>
+                                    <th>Tổng cộng</th>
                                     <td class="text-center"><strong><span class="amount">{{ $orderTotal }}
                                                 VND</span></strong></td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
-                    <div class="payment-method">
-                        <div class="payment-accordion">
-                            <div id="accordion">
-                                <div class="card">
-                                    <div class="card-header" id="#payment-1">
-                                        <h5 class="panel-title mb-2">
-                                            <a href="#" class="" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                                aria-expanded="true" aria-controls="collapseOne">
-                                                Direct Bank Transfer.
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                                        <div class="card-body mb-2 mt-2">
-                                            <p>Make your payment directly into our bank account. Please use your Order
-                                                ID as the payment reference. Your order won’t be shipped until the funds
-                                                have cleared in our account.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="#payment-2">
-                                        <h5 class="panel-title mb-2">
-                                            <a href="#" class="collapsed" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo">
-                                                Cheque Payment
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                                        <div class="card-body mb-2 mt-2">
-                                            <p>Make your payment directly into our bank account. Please use your Order
-                                                ID as the payment reference. Your order won’t be shipped until the funds
-                                                have cleared in our account.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="#payment-3">
-                                        <h5 class="panel-title mb-2">
-                                            <a href="#" class="collapsed" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseThree" aria-expanded="false"
-                                                aria-controls="collapseThree">
-                                                PayPal
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" data-parent="#accordion">
-                                        <div class="card-body mb-2 mt-2">
-                                            <p>Make your payment directly into our bank account. Please use your Order
-                                                ID as the payment reference. Your order won’t be shipped until the funds
-                                                have cleared in our account.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

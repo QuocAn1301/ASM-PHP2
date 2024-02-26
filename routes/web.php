@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\NewsController;
 
 use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
@@ -29,10 +30,9 @@ Route::get('/product', [HomeController::class, 'product'])->name('home.product')
 Route::get('/search', [HomeController::class, 'search'])->name('home.search');
 Route::get('/loc', [HomeController::class, 'loc'])->name('home.loc');
 
-
+Route::resource('admin/news', NewsController::class);
 
 Route::group(['middleware' => 'admin'], function () {
-    
     
     
     Route::resource('admin/products', ProductsController::class);
@@ -85,7 +85,8 @@ Route::group(['prefix' => 'account'], function () {
 
 Route::group(['prefix' => 'cart','middleware' => 'customer'], function () {
     Route::get('/', [CartController::class, 'index'])->name('cart.index');
-    Route::get('/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::match(['get', 'post'], '/add/{product}', [CartController::class, 'add'])->name('cart.add');
+
     Route::get('/delete/{product}', [CartController::class, 'delete'])->name('cart.delete');
     Route::match(['get', 'post', 'put'],'/update/{product}', [CartController::class, 'update'])->name('cart.update');
 

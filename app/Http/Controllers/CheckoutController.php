@@ -32,7 +32,7 @@ class CheckoutController extends Controller
                 ];
                 OrderDetail::create($data1);
             }
-            
+            return redirect()->route('home.index')->with('ok', 'Đặt hàng thành công');
             // Xóa sản phẩm khỏi giỏ hàng sau khi đặt hàng thành công
             $auth->carts()->delete();
         }

@@ -147,60 +147,20 @@
                     <!-- Sidebar Widget Start -->
                     <aside class="sidebar_widget widget-mt">
                         <div class="widget_inner">
-
                             <div class="widget-list widget-mb-1">
-                                <h3 class="widget-title">Menu Categories</h3>
-                                <!-- Widget Menu Start -->
-                                <nav>
-                                    <ul class="mobile-menu p-0 m-0">
-                                        <li class="menu-item-has-children"><a href="#">Breads</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Skateboard (02)</a></li>
-                                                <li><a href="#">Surfboard (4)</a></li>
-                                                <li><a href="#">Accessories (3)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children"><a href="#">Fruits</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Samsome</a></li>
-                                                <li><a href="#">GL Stylus (4)</a></li>
-                                                <li><a href="#">Uawei (3)</a></li>
-                                                <li><a href="#">Avocado (3)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children"><a href="#">Vagetables</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Power Bank</a></li>
-                                                <li><a href="#">Data Cable (4)</a></li>
-                                                <li><a href="#">Avocado (3)</a></li>
-                                                <li><a href="#">Brocoly (3)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children"><a href="#">Organic Food</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Vagetables</a></li>
-                                                <li><a href="#">Green Food (4)</a></li>
-                                                <li><a href="#">Coconut (3)</a></li>
-                                                <li><a href="#">Cabage (3)</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <!-- Widget Menu End -->
-                            </div>
-                            <div class="widget-list widget-mb-1">
-                                <h3 class="widget-title">Categories</h3>
+                                <h3 class="widget-title">Danh mục</h3>
                                 <div class="sidebar-body">
                                     <ul class="sidebar-list">
-                                        <li><a href="#">All Product</a></li>
-                                        <li><a href="#">Best Seller (5)</a></li>
-                                        <li><a href="#">Featured (4)</a></li>
-                                        <li><a href="#">New Products (6)</a></li>
+                                        <li><a href="{{ route('home.product') }}">Toàn bộ sản phẩm</a></li>
+                                        <li><a href="{{ route('home.product') }}?category_id=16"
+                                                previewlistener="true">Chăm sóc da</a></li>
+                                        <li><a href="{{ route('home.product') }}?category_id=9"
+                                                previewlistener="true">Chăm sóc tóc</a></li>
+                                        <li><a href="{{ route('home.product') }}?category_id=10"
+                                                previewlistener="true">Chăm sóc cơ thể</a></li>
                                     </ul>
                                 </div>
                             </div>
-
-
                         </div>
                     </aside>
                     <!-- Sidebar Widget End -->

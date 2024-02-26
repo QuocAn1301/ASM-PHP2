@@ -3,6 +3,17 @@
 @section('main')
 
 <div class="cart-main-wrapper mt-no-text mb-no-text">
+    <div class="breadcrumbs-area position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="breadcrumb-content position-relative section-content">
+                        <h3 class="title-3">Giỏ hàng</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container container-default-2 custom-area">
         <div class="row">
             <div class="col-lg-12">
@@ -10,12 +21,12 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th class="pro-thumbnail">Image</th>
-                                <th class="pro-title">Product</th>
-                                <th class="pro-price">Price</th>
-                                <th class="pro-quantity">Quantity</th>
-                                <th class="pro-subtotal">Total</th>
-                                <th class="pro-remove">Remove</th>
+                                <th class="pro-thumbnail">Ảnh Sản phẩm</th>
+                                <th class="pro-title">Sản phẩm</th>
+                                <th class="pro-price">Giá</th>
+                                <th class="pro-quantity">Số lượng</th>
+                                <th class="pro-subtotal">Tổng tiền</th>
+                                <th class="pro-remove">Xóa sản phẩm</th>
                             </tr>
                         </thead>
                         <tbody>

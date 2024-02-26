@@ -53,7 +53,6 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $relatedProducts = $product->category->products()->where('id', '!=', $product->id)->take(4)->get();
-    
         return view('home.show', compact('product', 'relatedProducts'));
     }
     
@@ -116,7 +115,4 @@ class ProductsController extends Controller
         return redirect()->route('products.index')->with('ok', 'Product deleted successfully');
     }
     
-
-    
-
 }

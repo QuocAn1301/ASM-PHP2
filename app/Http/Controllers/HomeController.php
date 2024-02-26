@@ -11,11 +11,21 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::with('images')->get();
-        return view('home.index',compact('products'));
+        $categoryOneProducts = Product::where('category_id',9)->get();
+        return view('home.index',compact('products', 'categoryOneProducts'));
     }
     public function product()
 {
-    $products = Product::with('images')->paginate(2); // Số lượng sản phẩm trên mỗi trang (ở đây là 12)
+    $products = Product::with('images')->get(); // Số lượng sản phẩm trên mỗi trang (ở đây là 12)
+    $category_id = request('category_id');
+    
+    // Tạo query để lấy sản phẩm, nếu có category_id thì lọc theo danh mục, ngược lại lấy toàn bộ sản phẩm
+    $query = Product::orderBy('id', 'DESC');
+    if ($category_id !== null) {
+        $query->where('category_id', $category_id);
+    }
+    $products = $query->paginate();
+
     return view('home.product', compact('products'));
 }
 
@@ -25,7 +35,7 @@ class HomeController extends Controller
     
         // Tìm kiếm sản phẩm dựa trên tên hoặc mô tả
         $products = Product::where('name', 'like', "%$query%")
-                            ->paginate(1);
+                            ->paginate(2);
     
         return view('home.search', compact('products'));
     }
