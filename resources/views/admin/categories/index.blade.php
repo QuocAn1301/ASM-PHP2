@@ -1,5 +1,5 @@
 @extends('master.dashboard')
-@section('title', 'Category')
+@section('title', 'Danh mục')
 @section('main')
 
 <div class="card" style="width: 600px;">
@@ -35,7 +35,8 @@
                         <p style="margin-bottom: 0rem;">{{ $category->name }}</p>
                     </td>
                     <td class="project-actions">
-                        <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $category->id) }}">
+                        <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $category->id) }}"
+                            style="padding: 0.25rem 0.5rem;">
                             <i class="fas fa-pencil-alt"></i> Sửa
                         </a>
                         <form id="deleteForm_{{ $category->id }}"
@@ -43,7 +44,7 @@
                             style="display: inline;">
                             @method('DELETE')
                             @csrf
-                            <button type="button" class="btn btn-danger"
+                            <button type="button" class="btn btn-danger btn-sm"
                                 onclick="confirmDelete({{ $category->id }}, '{{ $category->name }}')">
                                 <i class="fas fa-trash"></i> Xóa
                             </button>

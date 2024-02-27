@@ -1,10 +1,10 @@
 @extends('master.dashboard')
-@section('title', 'News')
+@section('title', 'Tin tức')
 @section('main')
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">News</h3>
+        <h3 class="card-title">Tin tức</h3>
 
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -18,16 +18,16 @@
 
     <div class="card-body">
         <a class="btn btn-primary btn-sm" href="{{ route('news.create') }}">
-            <i class="fas fa-folder"></i> Create
+            <i class="fas fa-folder"></i> Tạo tin tức
         </a>
 
         <table class="table table-striped projects">
             <thead>
                 <tr>
                     <th style="width: 5%">No</th>
-                    <th style="width: 15%">Title</th>
-                    <th style="width: 10%">Image</th>
-                    <th style="width: 15%">Actions</th>
+                    <th style="width: 15%">Tiêu đề</th>
+                    <th style="width: 10%">Ảnh</th>
+                    <th style="width: 15%">Hành động</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,15 +45,15 @@
                     </td>
                     <td class="project-actions">
                         <a class="btn btn-info btn-sm" href="{{ route('news.edit', $item->id) }}">
-                            <i class="fas fa-pencil-alt"></i> Edit
+                            <i class="fas fa-pencil-alt"></i> Sửa
                         </a>
                         <form id="deleteForm_{{ $item->id }}" action="{{ route('news.destroy', $item->id) }}"
                             method="post" style="display: inline;">
                             @method('DELETE')
                             @csrf
-                            <button type="button" class="btn btn-danger"
+                            <button type="button" class="btn btn-danger btn-sm"
                                 onclick="confirmDelete({{ $item->id }}, '{{ $item->title }}')">
-                                <i class="fas fa-trash"></i> Delete
+                                <i class="fas fa-trash"></i> Xóa
                             </button>
                         </form>
                     </td>

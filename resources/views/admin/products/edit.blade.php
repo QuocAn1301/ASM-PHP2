@@ -1,5 +1,6 @@
 <!-- Form chỉnh sửa sản phẩm -->
 @extends('master.dashboard')
+@section('title', 'Sửa sản phẩm')
 @section('main')
 <form id="updateForm" action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
     @method('PUT')
@@ -71,8 +72,8 @@
                     <input type="file" name="images[]" id="images" required multiple>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Sửa Sản Phẩm</button>
-            <a href="{{ route('products.index') }}" class="btn btn-danger">Hủy</a>
+            <button type="submit" class="btn btn-info btn-sm">Sửa Sản Phẩm</button>
+            <a href="{{ route('products.index') }}" class="btn btn-danger btn-sm">Hủy</a>
         </div>
     </div>
 </form>

@@ -19,7 +19,7 @@ class Customer extends Authenticatable
      */
     // lư dũ liệu vào database
     protected $fillable = [
-        'name', 'email', 'phone', 'address', 'gender', 'role', 'email_verified_at'
+        'name', 'email', 'phone', 'address', 'gender', 'role', 'email_verified_at','password',
     ];
  
     public function carts(){

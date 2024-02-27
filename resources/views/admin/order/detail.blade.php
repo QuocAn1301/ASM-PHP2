@@ -1,5 +1,5 @@
 @extends('master.dashboard')
-@section('title', 'Create Category')
+@section('title', 'Chi tiết đơn hàng')
 @section('main')
 <div class="cart-main-wrapper mt-no-text mb-no-text">
     <div class="container container-default-2 custom-area">
@@ -55,17 +55,40 @@
                 </div>
             </div>
             <div>
-                @if($order->status==1)
-                <a href="{{ route('order.admin.update', ['order' => $order->id]) }}?status=2"
-                    class="btn obrien-button primary-btn"> Hủy đơn</a>
-                @else
-                <a href="{{ route('order.admin.updatep', ['order' => $order->id]) }}?status=2"
-                    class="btn obrien-button primary-btn"> Đã thanh toán</a>
+                @if($order->status==0)
                 <a href="{{ route('order.admin.update', ['order' => $order->id]) }}?status=1"
-                    class="btn obrien-button primary-btn"> Giao hàng</a>
+                    class="btn obrien-button primary-btn"> Đang giao hàng </a>
+                @if($order->pay==0)
+                <a href="{{ route('order.admin.updatep', ['order' => $order->id]) }}?pay=1"
+                    class="btn obrien-button primary-btn"> Đã thanh toán</a>
+                @elseif($order->pay==1)
 
-                <a href="{{ route('order.admin.update', ['order' => $order->id]) }}?status=2"
+                @endif
+                <a href="{{ route('order.admin.update', ['order' => $order->id]) }}?status=3"
                     class="btn obrien-button primary-btn"> Hủy đơn</a>
+                <a href="{{ route('order.index') }}?status=0" class="btn obrien-button primary-btn"> Trở lại</a>
+                @elseif($order->status==1)
+                <a href="{{ route('order.admin.update', ['order' => $order->id]) }}?status=2"
+                    class="btn obrien-button primary-btn"> Giao hàng thành công</a>
+                @if($order->pay==0)
+                <a href="{{ route('order.admin.updatep', ['order' => $order->id]) }}?pay=1"
+                    class="btn obrien-button primary-btn"> Đã thanh toán</a>
+                @elseif($order->pay==1)
+
+                @endif
+                <a href="{{ route('order.admin.update', ['order' => $order->id]) }}?status=3"
+                    class="btn obrien-button primary-btn"> Hủy đơn</a>
+                <a href="{{ route('order.index') }}?status=1" class="btn obrien-button primary-btn"> Trở lại</a>
+                @elseif($order->status==2)
+                @if($order->pay==0)
+                <a href="{{ route('order.admin.updatep', ['order' => $order->id]) }}?pay=1"
+                    class="btn obrien-button primary-btn"> Đã thanh toán</a>
+                @elseif($order->pay==1)
+
+                @endif
+                <a href="{{ route('order.index') }}?status=2" class="btn obrien-button primary-btn"> Trở lại</a>
+                @elseif($order->status==3)
+                <a href="{{ route('order.index') }}?status=3" class="btn obrien-button primary-btn"> Trở lại</a>
                 @endif
             </div>
         </div>

@@ -27,7 +27,7 @@
                             <input name="password" type="text" placeholder="Mật khẩu mới">
                         </div>
                         <div class="single-input-item mb-3">
-                            <input name="confirm_password" type="text" placeholder="Nhập lại mật khẩu">
+                            <input name="confirm_password" type="text" placeholder="Xác nhận mật khẩu">
                         </div>
                         <div class="single-input-item mb-3">
                             <button class="btn obrien-button-2 primary-color" type="submit">Cập nhật mật khẩu</button>

@@ -7,27 +7,7 @@
         <h3 class="card-title">Danh sách đơn hàng</h3>
     </div>
     <div class="card-body">
-        @php
-        $statusDisplayed = false; // Biến để đảm bảo chỉ hiển thị tiêu đề một lần
-        @endphp
-
-        @foreach ($orders as $item)
-        @if (!$statusDisplayed)
-        @if ($item->status == 0)
-        <h5>Đang duyệt</h5>
-        @elseif ($item->status == 1)
-        <h5>Đang giao hàng</h5>
-        @elseif ($item->status == 2)
-        <h5>Đã giao hàng</h5>
-        @elseif ($item->status == 3)
-        <h5>Đã hủy</h5>
-        @endif
-        @php
-        $statusDisplayed = true; // Đã hiển thị tiêu đề, đánh dấu là true
-        @endphp
-        @endif
-        <!-- Hiển thị các thông tin khác của đơn hàng ở đây -->
-        @endforeach
+        <h5>Đã thanh toán</h5>
     </div>
 
 
@@ -72,11 +52,16 @@
                 </td>
                 <td class="pro-thumbnail">{{number_format($item->totalPrice) }}
                     VND</td>
+                @if ($item->status == 2)
+                <td>
 
+                </td>
+                @else
                 <td>
                     <a href="{{ route('order.admin.show', ['order' => $item->id]) }}"
                         class="btn obrien-button primary-btn">Xem chi tiết</a>
                 </td>
+                @endif
                 @endforeach
             </tr>
         </tbody>

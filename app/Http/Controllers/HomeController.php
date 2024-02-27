@@ -18,10 +18,10 @@ class HomeController extends Controller
 }
     public function product()
 {
-    $products = Product::with('images')->get(); // Số lượng sản phẩm trên mỗi trang (ở đây là 12)
+    $products = Product::with('images')->get();
     $category_id = request('category_id');
     
-    // Tạo query để lấy sản phẩm, nếu có category_id thì lọc theo danh mục, ngược lại lấy toàn bộ sản phẩm
+   
     $query = Product::orderBy('id', 'DESC');
     if ($category_id !== null) {
         $query->where('category_id', $category_id);

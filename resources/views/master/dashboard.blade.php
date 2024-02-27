@@ -5,7 +5,7 @@
     <base href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <title>@yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -116,18 +116,23 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('order.index') }}?status=2" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Đã giao hàng </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('order.index') }}?status=3" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Đã hủy</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('order.index') }}?status=3" class="nav-link">
+                                    <a href="{{ route('order.pindex') }}?pay=1" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Đã thanh toán </p>
+                                        <p>Đã thanh toán</p>
                                     </a>
                                 </li>
-
                             </ul>
                         </li>
                         <li class="nav-item">

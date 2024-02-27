@@ -1,5 +1,5 @@
 @extends('master.dashboard')
-
+@section('title', 'Sửa tài khoảng')
 @section('main')
 
 <form action="{{ route('customers.update', $customers->id) }}" method="post">
@@ -47,9 +47,8 @@
 
                 </div>
             </div>
-            <button type="submit" style="background-color:#008B8B;color:#fff; height:36px">Sửa tài khoảng</button>
-            <a href="{{ route('customers.index') }}" class="btn btn-primary"
-                style="background-color: #DC143C; color: #fff;">Trở lại</a>
+            <button type="submit" class="btn btn-info btn-sm">Sửa tài khoảng</button>
+            <a href="{{ route('customers.index') }}" class="btn btn-danger btn-sm">Trở lại</a>
         </div>
         <!-- /.card-body -->
     </div>

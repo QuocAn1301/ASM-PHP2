@@ -1,5 +1,6 @@
 <!-- Form chỉnh sửa tin tức -->
 @extends('master.dashboard')
+@section('title', 'Chỉnh Sửa Tin Tức')
 @section('main')
 <form id="updateForm" action="{{ route('news.update', $news->id) }}" method="post" enctype="multipart/form-data">
     @method('PUT')
@@ -38,10 +39,8 @@
                         style="max-width: 100%; max-height: 200px; margin-top: 10px;">
                 </div>
             </div>
-            <button type="submit" name="submitBtn" class="btn btn-primary"
-                style="background-color:#008B8B;color:#fff">Cập Nhật Tin Tức</button>
-            <a href="{{ route('news.index') }}" class="btn btn-primary"
-                style="background-color: #DC143C; color: #fff;">Quay Lại</a>
+            <button type="submit" name="submitBtn" class="btn btn-info btn-sm">Cập Nhật Tin Tức</button>
+            <a href="{{ route('news.index') }}" class="btn btn-danger btn-sm">Quay Lại</a>
         </div>
         <!-- /.card-body -->
     </div>

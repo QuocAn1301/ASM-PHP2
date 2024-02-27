@@ -9,8 +9,8 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers = Customer::all();
-        return view('admin.customers.index', compact('customers'));
+        $customers = Customer::paginate(8);
+    return view('admin.customers.index', compact('customers'));
     }
     public function create()
     {
@@ -23,6 +23,8 @@ class CustomerController extends Controller
         'name' => 'required|min:6|max:100',
         'email' => 'required|email|unique:customers,email',
         'password' => 'required|min:4',
+        'confirm_password' => 'required|same:password',
+
     ], [
         'name.required' => 'Vui lòng nhập tên của bạn.',
         'name.min' => 'Tên phải có ít nhất 6 ký tự.',
@@ -32,18 +34,23 @@ class CustomerController extends Controller
         'email.unique' => 'Địa chỉ email đã tồn tại.',
         'password.required' => 'Vui lòng nhập mật khẩu.',
         'password.min' => 'Mật khẩu phải có ít nhất 4 ký tự.',
+        'confirm_password.required' => 'Xác nhận mật khẩu không được để trống',
+        'confirm_password.same' => 'Xác nhận mật khẩu phải giống với mật khẩu',
     ]);
 
     // Tạo một bản ghi mới cho khách hàng
-    $customer = Customer::create([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'password' => bcrypt($request->input('password')),
-    ]);
+   // Tạo một bản ghi mới cho khách hàng
+$customer = Customer::create([
+    'name' => $request->input('name'),
+    'email' => $request->input('email'),
+    'password' => bcrypt($request->input('password')),
+    'email_verified_at' => now(), // Cập nhật ngày giờ hiện tại
+]);
+
     
 
     // Chuyển hướng về trang danh sách khách hàng hoặc hiển thị thông báo thành công
-    return redirect()->route('customers.index')->with('success', 'Tài khoản đã được tạo thành công!');
+    return redirect()->route('customers.index')->with('ok', 'Tài khoản đã được tạo thành công!');
 }
 
 

@@ -181,14 +181,17 @@ class AccountController extends Controller
             }],
             'password' => 'required|min:4',
             'confirm_password' => 'required|same:password',
+            'password' => 'required|different:old_password',
             
         ],[
             'old_password.required' => 'Vui lòng nhập mật khẩu cũ.',
             'old_password' => 'Mật khẩu cũ không đúng.',
             'password.required' => 'Vui lòng nhập mật khẩu mới.',
             'password.min' => 'Mật khẩu mới phải có ít nhất :min ký tự.',
-            'confirm_password.required' => 'Vui lòng nhập lại mật khẩu mới.',
-            'confirm_password.same' => 'Mật khẩu nhập lại không khớp với mật khẩu mới.',
+            'confirm_password.required' => 'Vui lòng nhập lại xác nhận mật khẩu mới.',
+            'confirm_password.same' => 'Mật khẩu xác nhận không khớp với mật khẩu mới.',
+            'password.different' => 'Mật khẩu mới không được giống mật khẩu cũ',
+
         ]);
         $data['password'] = bcrypt($req->password);
         $check2 = $auth->update($data);

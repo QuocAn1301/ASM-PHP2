@@ -40,6 +40,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('admin/customers', CustomerController::class);
 
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/porder', [OrderController::class, 'pindex'])->name('order.pindex');
     Route::get('/admin/order/detail/{order}', [OrderController::class, 'show'])->name('order.admin.show');
     Route::get('/admin/update/detail/{order}', [OrderController::class, 'update'])->name('order.admin.update');
     Route::get('/admin/updatep/detail/{order}', [OrderController::class, 'updatep'])->name('order.admin.updatep');

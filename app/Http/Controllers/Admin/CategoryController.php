@@ -21,6 +21,9 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name',
+        ],[
+            'name.required' => 'Vui lòng nhập nhập danh mục.',
+            'name.unique' => 'danh mục đã tồn tại.',
         ]);
 
         Category::create($request->all());

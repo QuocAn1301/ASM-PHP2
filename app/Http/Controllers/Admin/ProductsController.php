@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
     public function index()
-    {
-        $products = Product::with('images')->get();
-        return view('admin.products.index', compact('products'));
-    }
+{
+    $products = Product::with('images')->paginate(5);
+    return view('admin.products.index', compact('products'));
+}
 
     public function create()
     {

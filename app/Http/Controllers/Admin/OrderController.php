@@ -15,6 +15,13 @@ class OrderController extends Controller
         return view('admin.order.index', compact('orders'));
     }
 
+    public function pindex(){
+        $pay = request('pay',0);
+        $orders = Order::orderBy('id','DESC')-> where('pay', $pay)->paginate();
+
+        return view('admin.order.pindex', compact('orders'));
+    }
+
     public function show(Order $order){
         $auth = $order->customer;
         return view('admin.order.detail', compact('auth','order'));

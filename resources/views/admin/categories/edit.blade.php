@@ -1,5 +1,5 @@
 @extends('master.dashboard')
-@section('title', 'Create Category')
+@section('title', 'Sửa danh mục')
 @section('main')
 
 <div class="col-md-6">
@@ -18,7 +18,7 @@
                 @csrf
                 @method('PUT')
                 <label for="name">Tên danh mục:</label>
-                <input type="text" name="name" id="name" value="{{ $category->name }}" required>
+                <input type="text" name="name" id="name" value="{{ $category->name }}">
                 <button type="button" class="btn btn-primary" onclick="confirmUpdate()">Sửa</button>
             </form>
 
